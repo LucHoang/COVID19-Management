@@ -98,11 +98,11 @@ public class Main {
                             System.out.println("Goodbye!!!");
                             System.exit(1);
                         default:
-                            System.err.println("Lua chon ngoai pham vi!!!");
+                            System.err.println("Lựa chọn ngoài phạm vi!!!");
                     }
                 }
             } catch (InputMismatchException | NumberFormatException e) {
-                System.err.println("Nhap sai dinh dang!!!");
+                System.err.println("Nhập sai định dạng!!!");
             }
         }
     }

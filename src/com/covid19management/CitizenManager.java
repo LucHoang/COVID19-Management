@@ -12,7 +12,7 @@ public class CitizenManager {
     }
 
     public void createCitizen() {
-        System.out.print("So cong dan can them vao: ");
+        System.out.print("Số công dân cần thêm vào: ");
         int numberAdd = Integer.parseInt(input.nextLine());
 
         for (int i=1; i<=numberAdd; i++) {
@@ -28,14 +28,14 @@ public class CitizenManager {
                     identityCard = Integer.parseInt(input.nextLine());
                     for (Citizen citizen : listCitizen) {
                         if (citizen.getIdentityCard() == identityCard) {
-                            System.out.print("So CMND da ton tai! Hay nhap lai: ");
+                            System.out.print("Số CMND đã tồn tại! Hãy nhập lại: ");
                             check = false;
                             break;
                         }
                     }
                     if (check) break;
                 } catch (NumberFormatException e) {
-                    System.out.print("Nhap sai dinh dang! Hay nhap lai: ");
+                    System.out.print("Nhập sai định dạng! Hãy nhập lại: ");
                 }
             }
 
@@ -46,17 +46,17 @@ public class CitizenManager {
                     age = Integer.parseInt(input.nextLine());
                     break;
                 } catch (NumberFormatException e) {
-                    System.out.print("Nhap sai dinh dang! Hay nhap lai: ");
+                    System.out.print("Nhập sai định dạng! Hãy nhập lại: ");
                 }
             }
 
-            System.out.print("Nhap gioi tinh: ");
+            System.out.print("Nhập giới tính: ");
             String gender = input.nextLine();
 
-            System.out.print("Nhap dia chi thuong tru: ");
+            System.out.print("Nhập địa chỉ thường trú: ");
             String permanentAddress = input.nextLine();
 
-            System.out.print("Nhap dia chia tam tru: ");
+            System.out.print("Nhập địa chỉ tạm trú: ");
             String temporaryAddress = input.nextLine();
 
             Citizen citizen = new Citizen(name, identityCard, age, gender, permanentAddress, temporaryAddress);
@@ -71,7 +71,7 @@ public class CitizenManager {
     }
 
     public void findByName() {
-        System.out.print("Nhap ten cong dan can tim: ");
+        System.out.print("Nhập tên công dân cần tìm: ");
         String name = input.nextLine();
         boolean isFind = true;
 
@@ -82,12 +82,12 @@ public class CitizenManager {
             }
         }
         if (isFind) {
-            System.out.println("Khong tim thay cong dan nao!");
+            System.out.println("Không tìm thấy công dân nào!");
         }
     }
 
     public void findByIdentityCard() {
-        System.out.print("Nhap so CMND cong dan can tim: ");
+        System.out.print("Nhập số CMND công dân cần tìm: ");
         int indentityCard = Integer.parseInt(input.nextLine());
         boolean isFind = true;
 
@@ -99,18 +99,18 @@ public class CitizenManager {
             }
         }
         if (isFind) {
-            System.out.println("Khong tim thay cong dan nao!");
+            System.out.println("Không tìm thấy công dân nào!");
         }
     }
 
     public void editHealth() {
-        System.out.print("Nhap CMND cua cong dan can thiet lap: ");
+        System.out.print("Nhập CMND của công dân cần thiết lập: ");
         int indentityCard = Integer.parseInt(input.nextLine());
 
         for (Citizen citizen: listCitizen) {
             if (citizen.getIdentityCard() == indentityCard) {
                 while (true) {
-                        System.out.println("Chon trang thai suc khoe can thiet lap:");
+                        System.out.println("Chọn trạng thái sức khỏe cần thiết lập:");
                         System.out.println("1. Normal");
                         System.out.println("2. Contact");
                         System.out.println("3. Positive");
@@ -133,12 +133,12 @@ public class CitizenManager {
                                 System.out.println(citizen);
                                 return;
                             default:
-                                System.out.println("Lua chon ngoai pham vi!!!");
+                                System.out.println("Lựa chọn ngoài phạm vi!!!");
                         }
                 }
             }
         }
-        System.out.println("Khong tim thay cong dan nao!");
+        System.out.println("Không tìm thấy công dân nào!");
     }
 
     public void setMove() {
@@ -150,23 +150,23 @@ public class CitizenManager {
                 while (true) {
                     if (citizen.getHealth().equalsIgnoreCase("Contact") || citizen.getHealth().equalsIgnoreCase("Positive")) {
                         while (true) {
-                            System.out.print("Nhap dia chi (nhap 0 de thoat): ");
+                            System.out.print("Nhập địa chỉ (nhập 0 để thoát): ");
                             String address = input.nextLine();
 
                             if (address.equals("0")) {
                                 System.out.println(citizen);
                                 return;
                             } else if (citizen.listMove.contains(address)) {
-                                System.out.println("Dia chi da ton tai!");
+                                System.out.println("Địa chỉ đã tồn tại!");
                             } else {
                                 citizen.listMove.add(address);
                                 listCitizen.set(listCitizen.indexOf(citizen), citizen);
                             }
                         }
                     } else {
-                        System.out.println("Benh nhan dang o trang thai suc khoe binh thuong!");
+                        System.out.println("Bệnh nhân đang ở trạng thái sức khỏe bình thường!");
                         while (true) {
-                            System.out.println("Thiet lap lai trang thai suc khoe:");
+                            System.out.println("Thiết lập lại trạng thái sức khỏe:");
                             System.out.println("1. Contact");
                             System.out.println("2. Positive");
                             System.out.println("0. Exit");
@@ -188,7 +188,7 @@ public class CitizenManager {
                                     check = true;
                                     break;
                                 default:
-                                    System.out.println("Lua chon ngoai pham vi!!!");
+                                    System.out.println("Lựa chọn ngoài phạm vi!!!");
                             }
                             if (check) break;
                         }
@@ -196,11 +196,11 @@ public class CitizenManager {
                 }
             }
         }
-        System.out.println("Khong tim thay cong dan nao!");
+        System.out.println("Không tìm thấy công dân nào!");
     }
 
     public void findCitizenByListMove() {
-        System.out.print("Nhap so CMND cua benh nhan: ");
+        System.out.print("Nhập số CMND của bệnh nhân\n: ");
         int indentityCard = Integer.parseInt(input.nextLine());
         boolean isFind = true;
 
@@ -208,22 +208,27 @@ public class CitizenManager {
             if (citizen.getIdentityCard() == indentityCard) {
                 if (citizen.getHealth().equalsIgnoreCase("Contact") || citizen.getHealth().equalsIgnoreCase("Positive")) {
                     boolean check = true;
+                    int count = 0;
                     for (String address: citizen.listMove) {
                         for (Citizen citizenElement: listCitizen) {
-                            if (address.equalsIgnoreCase(citizenElement.getTemporaryAddress()) && !citizenElement.getHealth().equalsIgnoreCase("Positive")) {
+                            if (address.equalsIgnoreCase(citizenElement.getTemporaryAddress()) && !citizenElement.getHealth().equalsIgnoreCase("Positive")
+                                    && !citizenElement.getHealth().equalsIgnoreCase("Contact")) {
                                 citizenElement.setHealth("Contact");
                                 listCitizen.set(listCitizen.indexOf(citizenElement), citizenElement);
 
                                 check = false;
                                 System.out.println(citizenElement);
+                                count++;
                             }
                         }
                     }
                     if (check) {
-                        System.out.println("Khong co nguoi nao nam trong vung di chuyen cua benh nhan!");
+                        System.out.println("Không có người nào nằm trong vùng di chuyển của bệnh nhân!");
+                    } else {
+                        System.out.println("Đã chuyển "+count+" công dân vào danh sách theo dõi!");
                     }
                 } else {
-                    System.out.println("Cong dan nay co suc khoe binh thuong!");
+                    System.out.println("Công dân này có sức khỏe bình thường!");
                 }
 
                 isFind = false;
@@ -231,7 +236,7 @@ public class CitizenManager {
             }
         }
         if (isFind) {
-            System.out.println("Khong tim thay cong dan nao!");
+            System.out.println("Không tìm thấy công dân nào!");
         }
     }
 
@@ -244,7 +249,7 @@ public class CitizenManager {
             }
         }
         if (check) {
-            System.out.println("Khong co benh nhan nao duong tinh COVID-19!");
+            System.out.println("Không có bệnh nhân nào dương tính COVID-19!");
         }
     }
 
@@ -257,7 +262,7 @@ public class CitizenManager {
             }
         }
         if (check) {
-            System.out.println("Khong co benh nhan nao dang theo doi!");
+            System.out.println("Không có bệnh nhân nào đang theo dõi!");
         }
     }
 }
