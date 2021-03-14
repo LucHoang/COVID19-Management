@@ -11,56 +11,113 @@ public class CitizenManager {
 
     }
 
+    public void inputCitizen(Citizen citizen, int idSkip) {
+        System.out.print("Nhập tên: ");
+        String name = input.nextLine();
+        citizen.setName(name);
+
+        System.out.print("Nhập số CMND: ");
+        int identityCard;
+        while(true) {
+            try {
+                boolean check = true;
+                identityCard = Integer.parseInt(input.nextLine());
+                for (Citizen citizen1 : listCitizen) {
+                    if (citizen1.getIdentityCard() == identityCard && citizen1.getIdentityCard() != idSkip) {
+                        System.out.print("Số CMND đã tồn tại! Hãy nhập lại: ");
+                        check = false;
+                        break;
+                    }
+                }
+                if (check) {
+                    citizen.setIdentityCard(identityCard);
+                    break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.print("Nhập sai định dạng! Hãy nhập lại: ");
+            }
+        }
+
+        System.out.print("Nhap tuoi: ");
+        int age;
+        while (true) {
+            try {
+                age = Integer.parseInt(input.nextLine());
+                citizen.setAge(age);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.print("Nhập sai định dạng! Hãy nhập lại: ");
+            }
+        }
+
+        System.out.print("Nhập giới tính: ");
+        String gender = input.nextLine();
+        citizen.setGender(gender);
+
+        System.out.print("Nhập địa chỉ thường trú: ");
+        String permanentAddress = input.nextLine();
+        citizen.setPermanentAddress(permanentAddress);
+
+        System.out.print("Nhập địa chỉ tạm trú: ");
+        String temporaryAddress = input.nextLine();
+        citizen.setTemporaryAddress(temporaryAddress);
+    }
+
     public void createCitizen() {
         System.out.print("Số công dân cần thêm vào: ");
         int numberAdd = Integer.parseInt(input.nextLine());
 
         for (int i=1; i<=numberAdd; i++) {
-            System.out.println("\nCong dan "+i+":");
-            System.out.print("Nhap ten: ");
-            String name = input.nextLine();
-
-            System.out.print("Nhap so CMND: ");
-            int identityCard;
-            while(true) {
-                try {
-                    boolean check = true;
-                    identityCard = Integer.parseInt(input.nextLine());
-                    for (Citizen citizen : listCitizen) {
-                        if (citizen.getIdentityCard() == identityCard) {
-                            System.out.print("Số CMND đã tồn tại! Hãy nhập lại: ");
-                            check = false;
-                            break;
-                        }
-                    }
-                    if (check) break;
-                } catch (NumberFormatException e) {
-                    System.out.print("Nhập sai định dạng! Hãy nhập lại: ");
-                }
-            }
-
-            System.out.print("Nhap tuoi: ");
-            int age;
-            while (true) {
-                try {
-                    age = Integer.parseInt(input.nextLine());
-                    break;
-                } catch (NumberFormatException e) {
-                    System.out.print("Nhập sai định dạng! Hãy nhập lại: ");
-                }
-            }
-
-            System.out.print("Nhập giới tính: ");
-            String gender = input.nextLine();
-
-            System.out.print("Nhập địa chỉ thường trú: ");
-            String permanentAddress = input.nextLine();
-
-            System.out.print("Nhập địa chỉ tạm trú: ");
-            String temporaryAddress = input.nextLine();
-
-            Citizen citizen = new Citizen(name, identityCard, age, gender, permanentAddress, temporaryAddress);
+            System.out.println("\nCÔNG DÂN "+i+":");
+            Citizen citizen = new Citizen();
+            inputCitizen(citizen,0);
+            System.out.println(citizen);
             listCitizen.add(citizen);
+        }
+    }
+
+    public void editProfile() {
+        if (listCitizen.isEmpty()) {
+            System.out.println("Danh sách trống!!!");
+            return;
+        }
+        System.out.print("Nhập số CMND của công dân cần sửa: ");
+        int cmnd = Integer.parseInt(input.nextLine());
+        boolean isFind = false;
+
+        for (Citizen citizen: listCitizen) {
+            if (citizen.getIdentityCard() == cmnd) {
+                inputCitizen(citizen, cmnd);
+                System.out.println("Đã sửa thông tin thành công!");
+                System.out.println(citizen);
+                isFind = true;
+                break;
+            }
+        }
+        if (!isFind) {
+            System.out.println("Không tìm được công dân có số CMND: "+cmnd);
+        }
+    }
+
+    public void deleteCitizen() {
+        if (listCitizen.isEmpty()) {
+            System.out.println("Danh sách trống!!!");
+            return;
+        }
+        System.out.print("Nhập số CMND của công dân cần xóa: ");
+        int cmnd = Integer.parseInt(input.nextLine());
+        boolean isFind = false;
+
+        for (Citizen citizen: listCitizen) {
+            if (citizen.getIdentityCard() == cmnd) {
+                listCitizen.remove(citizen);
+                System.out.println("Đã xóa thành công!");
+                isFind = true;
+                break;
+            }
+        }
+        if (!isFind) {
+            System.out.println("Không tìm được công dân có số CMND: "+cmnd);
         }
     }
 
@@ -111,7 +168,7 @@ public class CitizenManager {
             if (citizen.getIdentityCard() == indentityCard) {
                 while (true) {
                         System.out.println("Chọn trạng thái sức khỏe cần thiết lập:");
-                        System.out.println("1. Normal");
+                        System.out.println("1. Normal (trạng thái Normal sẽ xóa lộ trình di chuyển)");
                         System.out.println("2. Contact");
                         System.out.println("3. Positive");
                         String choose = input.nextLine();
@@ -120,6 +177,7 @@ public class CitizenManager {
                             case "1":
                                 citizen.setHealth("Normal");
                                 listCitizen.set(listCitizen.indexOf(citizen), citizen);
+                                citizen.listMove.clear();
                                 System.out.println(citizen);
                                 return;
                             case "2":

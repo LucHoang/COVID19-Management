@@ -23,54 +23,73 @@ public class Main {
 
                     switch (choose) {
                         case "1":
-                            citizenManager.createCitizen();
-                            citizenManager.display();
+                            System.out.println("1. Thêm mới");
+                            System.out.println("2. Sửa thông tin cá nhân");
+                            System.out.println("3. Xóa công dân khỏi danh sách");
+                            System.out.println("0. Exit");
+                            System.out.print("Choose: ");
+                            String select = input.nextLine();
+                            switch (select) {
+                                case "1":
+                                    citizenManager.createCitizen();
+                                    break;
+                                case "2":
+                                    citizenManager.editProfile();
+                                    break;
+                                case "3":
+                                    citizenManager.deleteCitizen();
+                                    break;
+                                case "0":
+                                    break;
+                                default:
+                                    System.out.println("Lựa chọn ngoài phạm vi!!!");
+                            }
                             break;
                         case "2":
                             if (CitizenManager.listCitizen.isEmpty()) {
-                                System.out.println("Danh sach trong!!!");
+                                System.out.println("Danh sách trống!!!");
                                 break;
                             }
                             citizenManager.findByName();
                             break;
                         case "3":
                             if (CitizenManager.listCitizen.isEmpty()) {
-                                System.out.println("Danh sach trong!!!");
+                                System.out.println("Danh sách trống!!!");
                                 break;
                             }
                             citizenManager.findByIdentityCard();
                             break;
                         case "4":
                             if (CitizenManager.listCitizen.isEmpty()) {
-                                System.out.println("Danh sach trong!!!");
+                                System.out.println("Danh sách trống!!!");
                                 break;
                             }
                             citizenManager.editHealth();
                             break;
                         case "5":
                             if (CitizenManager.listCitizen.isEmpty()) {
-                                System.out.println("Danh sach trong!!!");
+                                System.out.println("Danh sách trống!!!");
                                 break;
                             }
                             citizenManager.setMove();
                             break;
                         case "6":
                             if (CitizenManager.listCitizen.isEmpty()) {
-                                System.out.println("Danh sach trong!!!");
+                                System.out.println("Danh sách trống!!!");
                                 break;
                             }
                             citizenManager.findCitizenByListMove();
                             break;
                         case "7":
                             if (CitizenManager.listCitizen.isEmpty()) {
-                                System.out.println("Danh sach trong!!!");
+                                System.out.println("Danh sách trống!!!");
                                 break;
                             }
                             citizenManager.displayPositive();
                             break;
                         case "8":
                             if (CitizenManager.listCitizen.isEmpty()) {
-                                System.out.println("Danh sach trong!!!");
+                                System.out.println("Danh sách trống!!!");
                                 break;
                             }
                             citizenManager.displayContact();
@@ -80,7 +99,7 @@ public class Main {
                             System.out.println("2. Export thông tin ra file");
                             System.out.println("0. Exit");
                             System.out.print("Choose: ");
-                            String select = input.nextLine();
+                            select = input.nextLine();
                             switch (select) {
                                 case "1":
                                     FileManager.readFile();
@@ -91,7 +110,7 @@ public class Main {
                                 case "0":
                                     break;
                                 default:
-                                    System.out.println("Lua chon ngoai pham vi!!!");
+                                    System.out.println("Lựa chọn ngoài phạm vi!!!");
                             }
                             break;
                         case "0":
@@ -109,12 +128,12 @@ public class Main {
 
     public static void showMenu() {
         System.out.println("\n----------------------------------------MENU-----------------------------------------");
-        System.out.println("1. Lập danh sách tất cả công dân tại Việt Nam");
+        System.out.println("1. Lập danh sách công dân");
         System.out.println("2. Tìm kiếm thông tin công dân theo tên");
         System.out.println("3. Tìm kiếm công dân theo CMTND");
         System.out.println("4. Thiết lập tình trạng sức khoẻ");
         System.out.println("5. Thiết lập lộ trình di chuyển của 1 bệnh nhân.");
-        System.out.println("6. Thiết lập trạng thái các bệnh nhân đã tiếp xúc vs một bệnh nhân dương tính COVID-19");
+        System.out.println("6. Thiết lập trạng thái theo dõi các công dân đã tiếp xúc vs một bệnh nhân");
         System.out.println("7. Hiển thị danh sách bệnh nhân dương tính COVID-19");
         System.out.println("8. Hiển thị danh sách bệnh nhân đang theo dõi");
         System.out.println("9. Đọc và ghi file");
