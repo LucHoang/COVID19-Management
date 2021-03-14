@@ -79,7 +79,6 @@ public class CitizenManager {
             if (citizen.getName().equalsIgnoreCase(name)) {
                 System.out.println(citizen);
                 isFind = false;
-                break;
             }
         }
         if (isFind) {

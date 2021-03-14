@@ -108,7 +108,7 @@ public class Main {
     }
 
     public static void showMenu() {
-        System.out.println("\n--------------------------------------MENU---------------------------------------");
+        System.out.println("\n----------------------------------------MENU-----------------------------------------");
         System.out.println("1. Lập danh sách tất cả công dân tại Việt Nam");
         System.out.println("2. Tìm kiếm thông tin công dân theo tên");
         System.out.println("3. Tìm kiếm công dân theo CMTND");
