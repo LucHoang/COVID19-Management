@@ -1,6 +1,8 @@
 package com.covid19management;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class CitizenManager {
@@ -72,6 +74,7 @@ public class CitizenManager {
             Citizen citizen = new Citizen();
             inputCitizen(citizen,0);
             System.out.println(citizen);
+            System.out.println("Đã thêm thành công!");
             listCitizen.add(citizen);
         }
     }
@@ -121,9 +124,71 @@ public class CitizenManager {
         }
     }
 
+    public void displayList() {
+        System.out.println("1. Hiển thị theo mặc định");
+        System.out.println("2. Hiển thị theo tên (A-Z)");
+        System.out.println("3. Hiển thị theo tên (Z-A)");
+        System.out.println("0. Exit");
+        System.out.print("Choose: ");
+        String select = input.nextLine();
+        switch (select) {
+            case "1":
+                display();
+                break;
+            case "2":
+                Collections.sort(listCitizen, new Comparator<Citizen>() {
+                    @Override
+                    public int compare(Citizen o1, Citizen o2) {
+                        return o1.getName().compareTo(o2.getName());
+                    }
+                });
+                display();
+                break;
+            case "3":
+                Collections.sort(listCitizen, new Comparator<Citizen>() {
+                    @Override
+                    public int compare(Citizen o1, Citizen o2) {
+                        return o2.getName().compareTo(o1.getName());
+                    }
+                });
+                display();
+                break;
+            case "0":
+                break;
+            default:
+                System.out.println("Lựa chọn ngoài phạm vi!!!");
+        }
+
+
+    }
+
     public void display() {
-        for (int i=1; i<=listCitizen.size(); i++) {
-            System.out.println("CÔNG DÂN "+i+"| "+listCitizen.get(i-1));
+        boolean isLoop = true;
+        int start = 0;
+        int end = 4;
+        Scanner scanner = new Scanner(System.in);
+
+        int count = 0;
+
+        while (isLoop) {
+            for (int i=start; i<=end; i++) {
+                if (i>listCitizen.size()-1) {
+                    break;
+                }
+                System.out.println("CÔNG DÂN "+(i+1)+"| "+listCitizen.get(i));
+                count++;
+            }
+            System.out.print("Đã hiển thị "+count+"/"+listCitizen.size());
+
+            if (end>=listCitizen.size()-1) break;
+            System.out.println(" | Enter để xem tiếp");
+            start+=5;
+            end+=5;
+
+            String check = scanner.nextLine();
+            if (!check.isEmpty()) {
+                isLoop = false;
+            }
         }
     }
 

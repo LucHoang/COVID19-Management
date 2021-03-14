@@ -50,14 +50,30 @@ public class Main {
                                 System.out.println("Danh sách trống!!!");
                                 break;
                             }
-                            citizenManager.findByName();
+                            citizenManager.displayList();
                             break;
                         case "3":
                             if (CitizenManager.listCitizen.isEmpty()) {
                                 System.out.println("Danh sách trống!!!");
                                 break;
                             }
-                            citizenManager.findByIdentityCard();
+                            System.out.println("1. Tìm kiếm công dân theo tên");
+                            System.out.println("2. Tìm kiếm công dân theo CMTND");
+                            System.out.println("0. Exit");
+                            System.out.print("Choose: ");
+                            select = input.nextLine();
+                            switch (select) {
+                                case "1":
+                                    citizenManager.findByName();
+                                    break;
+                                case "2":
+                                    citizenManager.findByIdentityCard();
+                                    break;
+                                case "0":
+                                    break;
+                                default:
+                                    System.out.println("Lựa chọn ngoài phạm vi!!!");
+                            }
                             break;
                         case "4":
                             if (CitizenManager.listCitizen.isEmpty()) {
@@ -129,8 +145,8 @@ public class Main {
     public static void showMenu() {
         System.out.println("\n----------------------------------------MENU-----------------------------------------");
         System.out.println("1. Lập danh sách công dân");
-        System.out.println("2. Tìm kiếm thông tin công dân theo tên");
-        System.out.println("3. Tìm kiếm công dân theo CMTND");
+        System.out.println("2. Hiển thị danh sách tất cả công dân");
+        System.out.println("3. Tìm kiếm công dân");
         System.out.println("4. Thiết lập tình trạng sức khoẻ");
         System.out.println("5. Thiết lập lộ trình di chuyển của 1 bệnh nhân.");
         System.out.println("6. Thiết lập trạng thái theo dõi các công dân đã tiếp xúc vs một bệnh nhân");
