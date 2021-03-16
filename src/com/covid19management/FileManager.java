@@ -38,6 +38,14 @@ public class FileManager {
                     citizen.setTemporaryAddress(words[5]);
                     citizen.setHealth(words[6]);
 
+                    String[] words2 = line.split("[\\[\\]]");
+                    if (words2.length == 2) {
+                        String move[] = words2[1].split(", ");
+                        for (String e : move) {
+                            citizen.listMove.add(e);
+                        }
+                    }
+
                     CitizenManager.listCitizen.add(citizen);
                 }
                 bufferedReader.close();

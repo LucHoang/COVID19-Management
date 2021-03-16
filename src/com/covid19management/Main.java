@@ -148,7 +148,7 @@ public class Main {
         System.out.println("2. Hiển thị danh sách tất cả công dân");
         System.out.println("3. Tìm kiếm công dân");
         System.out.println("4. Thiết lập tình trạng sức khoẻ");
-        System.out.println("5. Thiết lập lộ trình di chuyển của 1 bệnh nhân.");
+        System.out.println("5. Thiết lập lộ trình di chuyển của 1 bệnh nhân");
         System.out.println("6. Thiết lập trạng thái theo dõi các công dân đã tiếp xúc vs một bệnh nhân");
         System.out.println("7. Hiển thị danh sách bệnh nhân dương tính COVID-19");
         System.out.println("8. Hiển thị danh sách bệnh nhân đang theo dõi");
