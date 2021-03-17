@@ -101,14 +101,30 @@ public class Main {
                                 System.out.println("Danh sách trống!!!");
                                 break;
                             }
-                            citizenManager.displayPositive();
+                            System.out.println("1. Danh sách bệnh nhân dương tính COVID-19");
+                            System.out.println("2. Danh sách bệnh nhân đang theo dõi");
+                            System.out.println("0. Exit");
+                            System.out.print("Choose: ");
+                            select = input.nextLine();
+                            switch (select) {
+                                case "1":
+                                    citizenManager.displayPositive();
+                                    break;
+                                case "2":
+                                    citizenManager.displayContact();
+                                    break;
+                                case "0":
+                                    break;
+                                default:
+                                    System.out.println("Lựa chọn ngoài phạm vi!!!");
+                            }
                             break;
                         case "8":
                             if (CitizenManager.listCitizen.isEmpty()) {
                                 System.out.println("Danh sách trống!!!");
                                 break;
                             }
-                            citizenManager.displayContact();
+                            citizenManager.checkAddressPositive();
                             break;
                         case "9":
                             System.out.println("1. Import thông tin từ file");
@@ -143,15 +159,15 @@ public class Main {
     }
 
     public static void showMenu() {
-        System.out.println("\n----------------------------------------MENU-----------------------------------------");
+        System.out.println("\n------------------------------------MENU--------------------------------");
         System.out.println("1. Lập danh sách công dân");
         System.out.println("2. Hiển thị danh sách tất cả công dân");
         System.out.println("3. Tìm kiếm công dân");
         System.out.println("4. Thiết lập tình trạng sức khoẻ");
         System.out.println("5. Thiết lập lộ trình di chuyển của 1 bệnh nhân");
         System.out.println("6. Thiết lập trạng thái theo dõi các công dân đã tiếp xúc vs một bệnh nhân");
-        System.out.println("7. Hiển thị danh sách bệnh nhân dương tính COVID-19");
-        System.out.println("8. Hiển thị danh sách bệnh nhân đang theo dõi");
+        System.out.println("7. Hiển thị danh sách bệnh nhân");
+        System.out.println("8. Danh sách các địa điểm đang có bệnh nhân dương tính COVID-19");
         System.out.println("9. Đọc và ghi file");
         System.out.println("0. Thoát");
         System.out.print("Choose: ");

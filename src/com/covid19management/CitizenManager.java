@@ -1,9 +1,6 @@
 package com.covid19management;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Scanner;
+import java.util.*;
 
 public class CitizenManager {
     static ArrayList<Citizen> listCitizen = new ArrayList<>();
@@ -40,7 +37,7 @@ public class CitizenManager {
             }
         }
 
-        System.out.print("Nhap tuoi: ");
+        System.out.print("Nhập tuổi: ");
         int age;
         while (true) {
             try {
@@ -265,7 +262,7 @@ public class CitizenManager {
     }
 
     public void setMove() {
-        System.out.print("Nhap so CMND cua benh nhan: ");
+        System.out.print("Nhập số CMND của bệnh nhân: ");
         int indentityCard = Integer.parseInt(input.nextLine());
 
         for (Citizen citizen: listCitizen) {
@@ -323,7 +320,7 @@ public class CitizenManager {
     }
 
     public void findCitizenByListMove() {
-        System.out.print("Nhập số CMND của bệnh nhân\n: ");
+        System.out.print("Nhập số CMND của bệnh nhân: ");
         int indentityCard = Integer.parseInt(input.nextLine());
         boolean isFind = true;
 
@@ -387,5 +384,35 @@ public class CitizenManager {
         if (check) {
             System.out.println("Không có bệnh nhân nào đang theo dõi!");
         }
+    }
+
+    public void checkAddressPositive() {
+        Map<String, Integer> map = new TreeMap<>();
+        ArrayList<String> temp = new ArrayList<>();
+
+        for (Citizen citizen: listCitizen) {
+            if (citizen.getHealth().equals("Positive")) {
+                temp.add(citizen.getTemporaryAddress().toUpperCase(Locale.ROOT));
+            }
+        }
+
+        if (temp.isEmpty()) {
+            System.out.println("Chưa có bệnh nhân dương tính!!!");
+            return;
+        }
+
+        for(int i=0; i<temp.size(); i++) {
+            if (map.containsKey(temp.get(i))) {
+                int value = map.get(temp.get(i))+1;
+                map.put(temp.get(i), value);
+            } else {
+                map.put(temp.get(i), 1);
+            }
+        }
+
+        for (String key : map.keySet()) {
+            System.out.println(key + ": " + map.get(key)+" ca dương tính!");
+        }
+
     }
 }
